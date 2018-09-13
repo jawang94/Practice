@@ -38,8 +38,6 @@
         background-image:url('/Users/home/Desktop/PreDojo/academy-pacman-master/img/ninja.gif');
         background-size:contain;
         position: absolute;
-        left: 40px;
-        top: 40px;
 
         } 
     </style>
@@ -97,8 +95,7 @@
         [1,2,2,2,1],
         [1,2,1,2,1],
         [1,2,2,2,1],
-        [1,1,1,1,1],
-        
+        [1,1,1,1,1]
     ];
     var worldDict = {
         0: 'blank',
@@ -107,7 +104,7 @@
     }
  
     function drawWorld(){
-        output = "";
+        let output = "";
 
         for(var row = 0; row<world.length; row++) {
             output += "<div class='row'>"; 
@@ -122,6 +119,50 @@
             output;
     }
     drawWorld();
+
+    var ninjaman = {
+        x: 1,
+        y: 1
+    }
+
+    function drawNinja() {
+        document.getElementById('ninjaman').style.top = ninjaman.y * 40 + 'px'
+        document.getElementById('ninjaman').style.left = ninjaman.x * 40 + 'px'
+    }
+    drawNinja();
+
+    document.onkeydown = function(e) {
+        if(e.keyCode == 38){ //UP
+            if(world[ninjaman.y-1][ninjaman.x] != 1){
+                ninjaman.y--;
+            }
+        }
+        if(e.keyCode == 40){ //DOWN
+            if(world[ninjaman.y+1][ninjaman.x] != 1){
+                ninjaman.y++;
+            }
+        }
+        if(e.keyCode == 37){ //LEFT
+            if(world[ninjaman.y][ninjaman.x-1] != 1){
+                ninjaman.x--;
+            }
+        }
+        if(e.keyCode == 39){ //RIGHT
+            if(world[ninjaman.y][ninjaman.x+1] != 1){
+                ninjaman.x++;
+            }
+        }
+        world[ninjaman.y][ninjaman.x] = 0
+        drawWorld();
+        drawNinja();
+    }
+
+    //keep score of how many sushi eaten
+    //sushi = 10 pts & onigiri = 5 pts
+
+    //hacker challenge = create random world
+
+    //hacker challenge = create pumpkin ghosts that chase ninjaman
 
 </script>
 </html>
