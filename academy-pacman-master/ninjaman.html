@@ -47,6 +47,15 @@
         background-size:contain;
         position: absolute;
         } 
+        #ghost {
+        background-color: black; 
+        height: 40px; 
+        width: 40px;
+        display:inline-block;
+        background-image:url('/Users/home/Desktop/PreDojo/academy-pacman-master/img/pumpky.gif');
+        background-size:contain;
+        position: absolute;
+        } 
         #update {
         font-size: 20px;
         padding-left: 100px;       
@@ -98,6 +107,7 @@
         </div> -->
     </div>
     <div id="ninjaman"></div>
+    <div id="ghost"></div>
     <h1 id='update'></h1>
     <h1 id='score'></h1>
 </body>
@@ -145,39 +155,63 @@
         y: 1
     }
 
+    var ghost = {
+        x: 5,
+        y: 9
+    }
+
+
     function drawNinja() {
         document.getElementById('ninjaman').style.top = ninjaman.y * 40 + 'px'
         document.getElementById('ninjaman').style.left = ninjaman.x * 40 + 'px'
     }
     drawNinja();
 
+    function drawGhost() {
+    document.getElementById('ghost').style.top = ghost.y * 40 + 'px'
+    document.getElementById('ghost').style.left = ghost.x * 40 + 'px'
+    }
+    drawGhost()
+
     document.onkeydown = function(e) {
         if(e.keyCode == 38){ //UP
             if(world[ninjaman.y-1][ninjaman.x] != 1){
                 ninjaman.y--;
+                if(world[ghost.y+1][ghost.x] != 1){
+                ghost.y++;
+            }
             }
         }
         if(e.keyCode == 40){ //DOWN
             if(world[ninjaman.y+1][ninjaman.x] != 1){
                 ninjaman.y++;
+                if(world[ghost.y-1][ghost.x] != 1){
+                ghost.y--;
+            }
             }
         }
         if(e.keyCode == 37){ //LEFT
             if(world[ninjaman.y][ninjaman.x-1] != 1){
                 ninjaman.x--;
+                if(world[ghost.y][ghost.x+1] != 1){
+                ghost.x++;
+            }
             }
         }
         if(e.keyCode == 39){ //RIGHT
             if(world[ninjaman.y][ninjaman.x+1] != 1){
                 ninjaman.x++;
+                if(world[ghost.y][ghost.x-1] != 1){
+                ghost.x--;
+            }
             }
         }
         drawScore();
         world[ninjaman.y][ninjaman.x] = 0
         drawWorld();
         drawNinja();
-        
-    }
+        drawGhost();
+        }
 
     var score = 0;
     var scoreticker = "";
