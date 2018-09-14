@@ -123,7 +123,7 @@
         [1,0,0,0,0,0,0,0,0,1],
         [1,0,1,1,1,0,0,1,0,1],
         [1,0,0,2,1,0,0,0,3,1],
-        [1,1,1,1,1,1,1,1,1,1]
+        [1,1,1,1,1,1,1,1,1,1] 
     ];
     var worldDict = {
         0: 'blank',
@@ -132,6 +132,33 @@
         3: 'onigiri'
     }
  
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    
+    function generateRandomWorld(){
+        output = "";
+
+        for(var row = 0; row<world.length; row++) {
+            output += "<div class='row'>"; 
+            for(var x=0; x<world[row].length; x++) {
+                if(x > 0 && x < 9){
+                    if(row > 0 && row < 10) {
+                        world[row][x] = getRandomInt(0,3); 
+                        output += "<div class = '"+worldDict[world[row][x]]+"'></div>"
+                    }
+
+                }
+            }
+            output += "</div>"
+        }
+
+        document.getElementById('world').innerHTML = 
+            output;
+    
+    }
+    generateRandomWorld();
+
     function drawWorld(){
         output = "";
 
@@ -208,7 +235,7 @@
 
         drawScore();
         world[ninjaman.y][ninjaman.x] = 0
-        drawWorld();
+        drawWorld()
         drawNinja();
         drawGhost();
         }
