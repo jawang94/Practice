@@ -139,7 +139,6 @@
             output += "<div class='row'>"; 
             for(var x=0; x<world[row].length; x++) {
                 output += "<div class = '"+worldDict[world[row][x]]+"'></div>"
-                // worldDict[world[row][x]]
             }
             output += "</div>"
         }
@@ -206,6 +205,7 @@
             }
             }
         }
+
         drawScore();
         world[ninjaman.y][ninjaman.x] = 0
         drawWorld();
@@ -234,8 +234,6 @@
         }
     }
     //hacker challenge = create random world
-
-    //hacker challenge = create pumpkin ghosts that chase ninjaman
 
 </script>
 </html>
