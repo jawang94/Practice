@@ -23,11 +23,10 @@
 			position: absolute;
 		}
 		.missile {
-			width: 2px;
-			height: 10px;
-			background-color: red;
+			width: 4px;
+			height: 20px;
+			background-color: yellow;
 			position: absolute;
-
 		}
 	</style>
 
@@ -84,8 +83,14 @@
 
 	function moveEnemies() {
 		for(var i=0; i<enemies.length; i++) {
-			enemies[i].top = enemies[i].top + 5;
+			enemies[i].top = enemies[i].top + 1;
 		}
+	}
+
+	function moveMissiles() {
+	for(var i=0; i<missiles.length; i++) {
+		missiles[i].top = missiles[i].top - 5;
+	}
 	}
 
 	document.onkeydown = function(e) {
@@ -118,9 +123,11 @@
 
 		moveEnemies();
 		drawEnemies();
+
+		moveMissiles();
 		drawMissiles();
 
-		setTimeout(gameLoop, 100)
+		setTimeout(gameLoop, 10)
 	}
 	gameLoop();
 
